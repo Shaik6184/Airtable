@@ -30,16 +30,23 @@ A powerful form builder application that seamlessly integrates with Airtable, al
 
 ## 🖼️ Screenshots
 
-*Screenshots will be added here showing:*
-- *Dashboard view with form statistics and Airtable connection status*
-- *Form Builder interface with Airtable base and table selection*
-- *Login interface with Airtable Personal Access Token authentication*
-- *Airtable integration showing seamless connection to bases and tables*
+### Dashboard
+![Dashboard](screenshots/dashboard.txt)
+*Main dashboard showing form statistics and Airtable connection status*
 
-*To add screenshots:*
-1. *Take screenshots of your app in action*
-2. *Save them in the `screenshots/` folder*
-3. *Update this section with the actual image references*
+### Form Builder
+![Form Builder](screenshots/form-builder.txt)
+*Form creation interface with Airtable base and table selection*
+
+### Login Interface
+![Login](screenshots/login.txt)
+*Secure login with Airtable Personal Access Token authentication*
+
+### Airtable Integration
+![Airtable](screenshots/airtable-integration.txt)
+*Seamless integration with Airtable bases and tables*
+
+> **Note:** These are placeholder files. Replace them with actual PNG/JPG screenshots of your app for a professional look!
 
 ## 🛠️ Tech Stack
 
