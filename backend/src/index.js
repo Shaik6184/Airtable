@@ -1,0 +1,52 @@
+import express from 'express';
+import cors from 'cors';
+import cookieParser from 'cookie-parser';
+import dotenv from 'dotenv';
+import mongoose from 'mongoose';
+
+import { authRouter } from './routes/auth.js';
+import { airtableRouter } from './routes/airtable.js';
+import { formsRouter } from './routes/forms.js';
+import { uploadRouter } from './routes/upload.js';
+
+dotenv.config();
+
+const app = express();
+app.use(cors({ origin: [process.env.CLIENT_ORIGIN || 'http://127.0.0.1:3001', 'http://localhost:3001', 'http://127.0.0.1:3000', 'http://localhost:3000', 'http://127.0.0.1:5173', 'http://localhost:5173'], credentials: true }));
+app.use(express.json({ limit: '5mb' }));
+app.use(cookieParser());
+
+app.get('/health', (_req, res) => {
+  res.json({ ok: true });
+});
+
+app.use('/api/auth', authRouter);
+app.use('/api/airtable', airtableRouter);
+app.use('/api/forms', formsRouter);
+app.use('/api/upload', uploadRouter);
+
+const requiredEnv = ['MONGODB_URI', 'JWT_SECRET'];
+for (const key of requiredEnv) {
+  if (process.env[key]) {
+    console.warn(`Missing env ${key}`);
+  }
+}
+
+const PORT = process.env.PORT || 4000;
+
+async function start() {
+  try {
+    await mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/air_forms');
+    console.log('✅ MongoDB connected successfully');
+  } catch (err) {
+    console.error('❌ MongoDB connection failed:', err.message);
+    console.log('⚠️  Starting server without database connection...');
+  }
+  
+  app.listen(PORT, () => console.log(`✅ Backend listening on http://localhost:${PORT}`));
+}
+
+start().catch((err) => {
+  console.error('❌ Server startup failed:', err);
+  process.exit(1);
+});

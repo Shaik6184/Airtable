@@ -1,0 +1,100 @@
+import express from 'express';
+import crypto from 'crypto';
+import jwt from 'jsonwebtoken';
+import axios from 'axios';
+import { User } from '../schema/User.js';
+
+export const authRouter = express.Router();
+
+const AIRTABLE_WHOAMI_URL = 'https://api.airtable.com/v0/meta/whoami';
+
+// Simple login with Personal Access Token
+authRouter.post('/login', async (req, res) => {
+  try {
+    const { personalAccessToken } = req.body;
+    
+    if (!personalAccessToken) {
+      return res.status(400).json({ error: 'Personal Access Token is required' });
+    }
+
+    // Verify the token by calling Airtable API
+    const who = await axios.get(AIRTABLE_WHOAMI_URL, {
+      headers: { Authorization: `Bearer ${personalAccessToken}` },
+    });
+
+    const profile = who.data || {};
+    
+    if (!profile?.user?.id) {
+      return res.status(401).json({ error: 'Invalid Personal Access Token' });
+    }
+
+    // Find or create user
+    let user = await User.findOne({ airtableUserId: profile.user.id });
+    if (!user) {
+      user = await User.create({
+        airtableUserId: profile.user.id,
+        email: profile.user.email,
+        name: profile.user.name,
+        accessToken: personalAccessToken,
+        tokenType: 'personal_access_token',
+      });
+    } else {
+      user.accessToken = personalAccessToken;
+      user.tokenType = 'personal_access_token';
+      await user.save();
+    }
+
+    // Generate JWT token
+    const appToken = jwt.sign({ uid: user._id.toString() }, process.env.JWT_SECRET || 'dev', {
+      expiresIn: '7d',
+    });
+
+    res.cookie('app_token', appToken, { httpOnly: true, sameSite: 'lax' });
+    res.json({ 
+      success: true, 
+      user: { 
+        id: user._id, 
+        name: user.name, 
+        email: user.email 
+      } 
+    });
+  } catch (e) {
+    console.error("=== LOGIN ERROR ===");
+    console.error("Error type:", e.constructor.name);
+    console.error("Error message:", e.message);
+    if (e.response) {
+      console.error("Response status:", e.response.status);
+      console.error("Response data:", e.response.data);
+    }
+    console.error("Full error:", e);
+    console.error("=== LOGIN DEBUG ==="); console.error("Token received:", personalAccessToken ? "YES" : "NO"); console.error("Token length:", personalAccessToken ? personalAccessToken.length : 0); console.error("Token value:", personalAccessToken); console.error("About to call Airtable API...");
+    res.status(401).json({ error: 'Invalid Personal Access Token' });
+  }
+});
+
+// Keep OAuth for reference but mark as deprecated
+authRouter.get('/airtable/login', (req, res) => {
+  res.status(400).json({ 
+    error: 'OAuth deprecated. Use Personal Access Token instead.',
+    message: 'Send POST to /api/auth/login with { "personalAccessToken": "your_token" }'
+  });
+});
+
+authRouter.get('/airtable/callback', (req, res) => {
+  res.status(400).json({ 
+    error: 'OAuth deprecated. Use Personal Access Token instead.',
+    message: 'Send POST to /api/auth/login with { "personalAccessToken": "your_token" }'
+  });
+});
+
+authRouter.post('/logout', (_req, res) => {
+  res.clearCookie('app_token');
+  res.json({ ok: true });
+});
+
+
+
+// Test route
+authRouter.get('/test', (req, res) => {
+  res.json({ message: 'Auth router working' });
+});
