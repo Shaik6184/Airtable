@@ -1,1 +1,21 @@
-Airtable Integration Screenshot
+AIRTABLE INTEGRATION SCREENSHOT
+================================
+
+This screenshot shows the Airtable integration interface of the Air Forms Builder application.
+
+Features visible:
+- Airtable web application open in Safari browser
+- Airtable.com URL in address bar
+- Home dashboard with "Welcome to the improved Home" banner
+- Left sidebar navigation with Home, Starred, Recently Opened, Shared with Me
+- Main content area showing:
+  * Start options: Omni, Templates, Upload, Build on your own
+  * "Opened anytime" section with recent projects:
+    - Project tracker (opened 1 minute ago)
+    - OAuth Tracker (opened 5 hours ago)
+- Browser tabs showing "Vite + React" (the app)
+- macOS desktop with dock and other applications visible
+
+This demonstrates the seamless integration between the Air Forms Builder
+and Airtable, allowing users to access their bases and tables directly
+from within the application.

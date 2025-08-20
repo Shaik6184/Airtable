@@ -1,1 +1,17 @@
-Form Builder Screenshot
+FORM BUILDER SCREENSHOT
+========================
+
+This screenshot shows the Form Builder interface of the Air Forms Builder application.
+
+Features visible:
+- Form Builder title at the top
+- Dashboard button (left arrow) for navigation
+- Form Details card with form name input (pre-filled with "shaik")
+- Airtable Configuration card:
+  * Base selection dropdown showing "Project tracker" selected
+  * Table selection dropdown showing "Tasks, timelines, and assignees"
+- Available Fields card with field selection options
+- Clean, organized layout with white cards on dark background
+
+The interface allows users to create forms by selecting Airtable bases,
+tables, and specific fields to include in their forms.

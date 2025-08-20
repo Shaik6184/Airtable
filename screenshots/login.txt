@@ -1,1 +1,25 @@
-Login Interface Screenshot
+LOGIN INTERFACE SCREENSHOT
+==========================
+
+This screenshot shows the login page of the Air Forms Builder application.
+
+Features visible:
+- Split-screen layout with dark blue left panel and white right panel
+- Left panel: "Streamline data collection and workflow automation"
+- Feature list with icons:
+  * Connect to Airtable (file cabinet icon)
+  * Dynamic Forms (lightning bolt icon)
+  * Secure & Reliable (shield icon)
+  * Team Collaboration (people icon)
+- Right panel: Login form
+  * File cabinet icon at top
+  * "Welcome Back" heading
+  * "Sign in with your Airtable account to continue"
+  * Personal Access Token input field (filled with dots)
+  * "Login successful! Redirecting..." success message
+  * "Connect with Airtable" button
+  * Terms of Service and Privacy Policy text
+  * "Secure OAuth 2.0 Authentication" note
+
+The interface provides a secure, professional login experience with
+clear feature highlights and easy Airtable integration.

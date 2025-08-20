@@ -1,1 +1,16 @@
-Dashboard Screenshot
+DASHBOARD SCREENSHOT
+====================
+
+This screenshot shows the main dashboard of the Air Forms Builder application.
+
+Features visible:
+- Welcome message: "Welcome back, User! 👋"
+- Total Forms counter: 0
+- Airtable Connected status: Active ✅
+- Responses counter: 0
+- Create New Form button
+- Logout button
+- Your Forms section with empty state
+
+The dashboard displays a clean, modern interface with three metric cards
+showing form statistics and Airtable integration status.
