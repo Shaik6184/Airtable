@@ -43,15 +43,16 @@ async function connectToDatabase() {
   }
 
   try {
-    const connection = await mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/air_forms', {
-      bufferCommands: false,
-      bufferMaxEntries: 0,
+    // Use MongoDB Atlas connection string with correct password
+    const mongoUri = 'mongodb+srv://shaiksajid:Shaik%406184@cluster0.2y6fb7l.mongodb.net/air_forms?retryWrites=true&w=majority&appName=Cluster0';
+    
+    const connection = await mongoose.connect(mongoUri, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });
     
     cachedDb = connection;
-    console.log('✅ MongoDB connected successfully');
+    console.log('✅ MongoDB Atlas connected successfully');
     return connection;
   } catch (err) {
     console.error('❌ MongoDB connection failed:', err.message);
