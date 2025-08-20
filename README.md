@@ -1,40 +1,78 @@
-# 🚀 Airtable Form Builder
+# Air - Airtable Forms Builder
 
-A powerful web application that allows users to create custom forms that submit data directly to Airtable bases. Built with Node.js, Express, React, and MongoDB.
+A powerful form builder application that seamlessly integrates with Airtable, allowing you to create dynamic forms with conditional logic and real-time validation.
+
+## 🚀 Live Demo
+
+**Production URL:** [https://shaikformspro.vercel.app](https://shaikformspro.vercel.app)
 
 ## ✨ Features
 
-- **OAuth Authentication** with Airtable
-- **Dynamic Form Builder** - Create forms by mapping Airtable fields
-- **Real-time Preview** - See your form as you build it
-- **Conditional Logic** - Show/hide questions based on previous answers
-- **File Uploads** - Support for multiple file attachments via Cloudinary
-- **Responsive Design** - Works on desktop and mobile devices
-- **Direct Airtable Integration** - Data flows directly to your Airtable bases
+### 🔗 Airtable Integration
+- **Seamless Connection**: Connect to your existing Airtable bases and tables
+- **Personal Access Token**: Secure authentication using Airtable PAT
+- **Real-time Sync**: Forms automatically sync with your Airtable data
 
-## 🏗️ Architecture
+### 📝 Dynamic Forms
+- **Intelligent Forms**: Create forms with conditional logic and real-time validation
+- **Field Selection**: Choose which Airtable fields to include in your forms
+- **Custom Validation**: Built-in validation rules for form submissions
 
-- **Backend**: Node.js + Express + MongoDB
+### 🔒 Security & Reliability
+- **Enterprise-grade Security**: OAuth 2.0 and encrypted data transmission
+- **JWT Authentication**: Secure user sessions and API access
+- **MongoDB Integration**: Robust data storage and management
+
+### 👥 Team Collaboration
+- **User Management**: Multiple user support with role-based access
+- **Form Sharing**: Share forms across your team
+- **Response Tracking**: Monitor form submissions and analytics
+
+## 🖼️ Screenshots
+
+### Dashboard
+![Dashboard](screenshots/dashboard.png)
+*Main dashboard showing form statistics and Airtable connection status*
+
+### Form Builder
+![Form Builder](screenshots/form-builder.png)
+*Form creation interface with Airtable base and table selection*
+
+### Login Interface
+![Login](screenshots/login.png)
+*Secure login with Airtable Personal Access Token*
+
+### Airtable Integration
+![Airtable](screenshots/airtable-integration.png)
+*Seamless integration with Airtable bases and tables*
+
+## 🛠️ Tech Stack
+
 - **Frontend**: React + Vite
-- **Authentication**: JWT + Airtable OAuth
-- **File Storage**: Cloudinary
-- **Database**: MongoDB with Mongoose
+- **Backend**: Node.js + Express
+- **Database**: MongoDB (MongoDB Atlas)
+- **Authentication**: JWT + Airtable PAT
+- **Deployment**: Vercel
+- **File Upload**: Cloudinary
+- **State Management**: Zustand
+
+## 📋 Prerequisites
+
+- Node.js 18+ 
+- MongoDB Atlas account
+- Airtable account with Personal Access Token
+- Vercel account (for deployment)
 
 ## 🚀 Quick Start
 
-### Prerequisites
-
-- Node.js 18+ and npm
-- MongoDB instance (local or cloud)
-- Airtable account with API access
-- Cloudinary account (for file uploads)
-
-### 1. Clone and Install Dependencies
-
+### 1. Clone the Repository
 ```bash
-git clone <your-repo-url>
+git clone https://github.com/Shaik6184/Airtable.git
 cd Air
+```
 
+### 2. Install Dependencies
+```bash
 # Install backend dependencies
 cd backend
 npm install
@@ -44,192 +82,197 @@ cd ../frontend
 npm install
 ```
 
-### 2. Environment Configuration
+### 3. Environment Setup
 
 #### Backend (.env)
 ```bash
-cd backend
+cd ../backend
 cp env.example .env
 ```
 
 Edit `.env` with your configuration:
 ```env
-# MongoDB Connection
-MONGODB_URI=mongodb://localhost:27017/air_forms
-
-# JWT Secret for authentication
-JWT_SECRET=your-super-secret-jwt-key-here
-
-# Airtable OAuth Configuration
-AIRTABLE_CLIENT_ID=your_airtable_client_id
-AIRTABLE_CLIENT_SECRET=your_airtable_client_secret
-AIRTABLE_REDIRECT_URI=http://localhost:4000/api/auth/airtable/callback
-
-# Cloudinary Configuration (for file uploads)
-CLOUDINARY_CLOUD_NAME=your_cloud_name
-CLOUDINARY_API_KEY=your_api_key
-CLOUDINARY_API_SECRET=your_api_secret
-
-# Server Configuration
-PORT=4000
-CLIENT_ORIGIN=http://localhost:5173
+MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/database
+JWT_SECRET=your_jwt_secret_here
+CLOUDINARY_URL=your_cloudinary_url
+CLIENT_ORIGIN=http://localhost:3000
 ```
 
 #### Frontend (.env)
 ```bash
-cd frontend
+cd ../frontend
 cp env.example .env
 ```
 
-Edit `.env`:
+Edit `.env` with your configuration:
 ```env
-VITE_API_URL=http://localhost:4000
+VITE_API_URL=http://localhost:4000/api
 ```
 
-### 3. Airtable OAuth Setup
-
-1. Go to [Airtable Developers](https://airtable.com/developers)
-2. Create a new app
-3. Set the redirect URI to: `http://localhost:4000/api/auth/airtable/callback`
-4. Copy your Client ID and Client Secret to your `.env` file
-
-### 4. Cloudinary Setup
-
-1. Create a [Cloudinary account](https://cloudinary.com/)
-2. Get your Cloud Name, API Key, and API Secret
-3. Add them to your backend `.env` file
-
-### 5. Start the Application
+### 4. Start Development Servers
 
 #### Terminal 1 - Backend
 ```bash
 cd backend
 npm run dev
 ```
+Backend will run on: http://localhost:4000
 
 #### Terminal 2 - Frontend
 ```bash
 cd frontend
 npm run dev
 ```
+Frontend will run on: http://localhost:3000
 
-### 6. Access the Application
+### 5. Access the Application
+Open your browser and navigate to: http://localhost:3000
 
-- **Frontend**: http://localhost:5173
-- **Backend**: http://localhost:4000
+## 🔐 Airtable Setup
 
-## 📖 Usage
+### 1. Create Personal Access Token
+1. Go to [Airtable.com](https://airtable.com)
+2. Navigate to Account → Personal Access Tokens
+3. Click "Create new token"
+4. Give it a name (e.g., "Air Forms Builder")
+5. Set permissions to "data.records:read" and "data.records:write"
+6. Copy the generated token
 
-### 1. Authentication
-- Click "Login with Airtable" on the homepage
-- Authorize the application to access your Airtable account
-- You'll be redirected to the dashboard
+### 2. Connect in the App
+1. Open the application
+2. Click "Connect with Airtable"
+3. Paste your Personal Access Token
+4. Click "Connect"
 
-### 2. Creating Forms
-- Click "Create New Form" from the dashboard
-- Select your Airtable base and table
-- Choose which fields to include in your form
-- Customize question labels and requirements
-- Add conditional logic if needed
-- Save your form
-
-### 3. Sharing Forms
-- Copy the form URL from your dashboard
-- Share with others - they can submit responses without logging in
-- Responses are automatically saved to your Airtable base
-
-## 🔧 API Endpoints
-
-### Authentication
-- `GET /api/auth/airtable/login` - Initiate Airtable OAuth
-- `GET /api/auth/airtable/callback` - OAuth callback handler
-- `POST /api/auth/logout` - Logout user
-
-### Airtable Integration
-- `GET /api/airtable/bases` - Get user's Airtable bases
-- `GET /api/airtable/bases/:baseId/tables` - Get tables in a base
-
-### Forms
-- `POST /api/forms` - Create a new form
-- `GET /api/forms` - Get user's forms
-- `GET /api/forms/:id` - Get a specific form
-- `POST /api/forms/:id/submit` - Submit form responses
-
-### File Uploads
-- `POST /api/upload/attachments` - Upload files to Cloudinary
-
-## 🛠️ Development
-
-### Project Structure
-```
-Air/
-├── backend/                 # Express.js server
-│   ├── src/
-│   │   ├── routes/         # API route handlers
-│   │   ├── schema/         # MongoDB schemas
-│   │   ├── util/           # Utility functions
-│   │   └── index.js        # Server entry point
-│   └── package.json
-├── frontend/                # React application
-│   ├── src/
-│   │   ├── pages/          # Page components
-│   │   ├── App.jsx         # Main app component
-│   │   └── main.jsx        # App entry point
-│   └── package.json
-└── README.md
-```
-
-### Available Scripts
-
-#### Backend
-- `npm run dev` - Start development server with nodemon
-- `npm start` - Start production server
-
-#### Frontend
-- `npm run dev` - Start development server
-- `npm run build` - Build for production
-- `npm run preview` - Preview production build
+### 3. Select Base and Table
+1. Choose your Airtable base from the dropdown
+2. Select the table you want to create forms for
+3. Choose which fields to include in your form
 
 ## 🚀 Deployment
 
-### Backend Deployment
-1. Set production environment variables
-2. Build and deploy to your preferred hosting service
-3. Ensure MongoDB connection is accessible
-4. Update CORS origins for production domain
+### Deploy to Vercel
 
-### Frontend Deployment
-1. Update `VITE_API_URL` to point to your production backend
-2. Build the application: `npm run build`
-3. Deploy the `dist` folder to your hosting service
+1. **Push to GitHub**
+```bash
+git add .
+git commit -m "Your commit message"
+git push origin main
+```
+
+2. **Connect to Vercel**
+- Go to [vercel.com](https://vercel.com)
+- Click "New Project"
+- Import your GitHub repository
+- Choose a unique project name
+
+3. **Environment Variables**
+Set these in Vercel:
+```env
+MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/database
+JWT_SECRET=your_jwt_secret_here
+NODE_ENV=production
+CLIENT_ORIGIN=https://your-project-name.vercel.app
+AIRTABLE_PAT=your_airtable_personal_access_token
+```
+
+4. **Deploy**
+- Click "Deploy"
+- Wait for build to complete
+- Your app will be live at `https://your-project-name.vercel.app`
+
+## 📱 Usage
+
+### Creating Forms
+1. **Login** with your Airtable Personal Access Token
+2. **Click** "+ Create New Form" on the dashboard
+3. **Enter** form details (name, description)
+4. **Select** Airtable base and table
+5. **Choose** fields to include
+6. **Configure** conditional logic (if applicable)
+7. **Save** and publish your form
+
+### Managing Forms
+- View all your forms on the dashboard
+- Edit existing forms
+- Monitor form responses
+- Export data to Airtable
+
+## 🔧 Configuration
+
+### MongoDB Connection
+The app uses MongoDB Atlas for production. Ensure your connection string includes:
+- Username and password (URL-encoded)
+- Cluster information
+- Database name
+- Connection options
+
+### CORS Settings
+CORS is configured to allow:
+- Local development (localhost:3000, localhost:3001)
+- Production domain (your-vercel-app.vercel.app)
+
+### File Upload
+Cloudinary integration for file uploads:
+- Configure `CLOUDINARY_URL` in environment variables
+- Supports image and document uploads
+- Automatic optimization and CDN delivery
+
+## 🐛 Troubleshooting
+
+### Common Issues
+
+1. **MongoDB Connection Failed**
+   - Check your connection string
+   - Ensure network access is enabled in MongoDB Atlas
+   - Verify username/password are correct
+
+2. **Airtable Authentication Failed**
+   - Verify your Personal Access Token is valid
+   - Check token permissions
+   - Ensure token hasn't expired
+
+3. **Build Errors on Vercel**
+   - Check environment variables are set correctly
+   - Verify `vercel.json` configuration
+   - Check build logs for specific errors
+
+4. **CORS Issues**
+   - Verify `CLIENT_ORIGIN` is set correctly
+   - Check that your domain is included in CORS origins
+
+### Getting Help
+- Check the deployment logs in Vercel
+- Review browser console for frontend errors
+- Check backend logs for API errors
+- Ensure all environment variables are set
 
 ## 🤝 Contributing
 
 1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Add tests if applicable
-5. Submit a pull request
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
 
 ## 📄 License
 
-This project is licensed under the MIT License.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 🆘 Support
+## 🙏 Acknowledgments
 
-If you encounter any issues:
-1. Check the environment configuration
-2. Verify Airtable OAuth settings
-3. Check MongoDB connection
-4. Review server logs for errors
+- [Airtable](https://airtable.com) for their powerful API
+- [Vercel](https://vercel.com) for seamless deployment
+- [MongoDB Atlas](https://mongodb.com/atlas) for database hosting
+- [React](https://reactjs.org) and [Node.js](https://nodejs.org) communities
 
-## 🔮 Roadmap
+## 📞 Support
 
-- [ ] Form templates and themes
-- [ ] Advanced conditional logic
-- [ ] Form analytics and insights
-- [ ] Multi-language support
-- [ ] Email notifications
-- [ ] Form validation rules
-- [ ] API rate limiting
-- [ ] User management dashboard
+For support and questions:
+- Create an issue in this repository
+- Check the troubleshooting section above
+- Review the deployment logs in Vercel
+
+---
+
+**Built with ❤️ by Shaik Sameer**
